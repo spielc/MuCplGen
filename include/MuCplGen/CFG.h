@@ -123,7 +123,7 @@ namespace MuCplGen
 			auto arg = data[index];
 			if (arg == nullptr)
 			{
-				if constexpr (std::is_same_v<std::remove_reference<Arg>::type, Empty>)
+				if constexpr (std::is_same_v<typename std::remove_reference<Arg>::type, Empty>)
 					return Empty{};
 				std::string name = typeid(typename std::remove_reference<Arg>::type).name();
 				std::stringstream ss;
@@ -160,7 +160,7 @@ namespace MuCplGen
 		std::any* RecordRet(Ret&& ret, const std::vector<std::any*>& data)
 		{
 			if constexpr(std::is_null_pointer_v<Ret>) return nullptr;
-			if constexpr (std::is_same_v<PassOn, std::remove_reference<Ret>::type>) return data[ret.index];
+			if constexpr (std::is_same_v<PassOn, typename std::remove_reference<Ret>::type>) return data[ret.index];
 			auto* o = new std::any;
 			o->emplace<Ret>(std::forward<Ret>(ret));
 			gc.push(o);
