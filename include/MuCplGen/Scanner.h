@@ -18,7 +18,7 @@ namespace MuCplGen
 		static constexpr const char* Blank = "^( |\n|\t)+";
 		static constexpr const char* Number = R"(^(\-|\+)?\d+(\.\d+)?)";
 		static constexpr const char* Identifier = R"(^([a-z]|[A-Z]|_)\w*)";
-		static constexpr const char* RawString = R"(^((".*?[^\\]")|('(\\.|.)')))";
+		static constexpr const char* RawString = R"(^(("[^\"]*")|('(\\.|.)')))";
 	};
 	template<class Token = BaseToken>
 	struct Scanner
